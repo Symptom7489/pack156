@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  repo: Symptom7489/dpec-test
+  repo: Symptom7489/pack156
   branch: main
 
 media_folder: images/members
