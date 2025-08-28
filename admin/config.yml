@@ -15,7 +15,6 @@ collections:
     fields:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Role", name: "role", widget: "string" }
-      - { label: "Rank", name: "rank", widget: "string" }
       - { label: "Rank Photo", name: "rank_photo", widget: "image" }
       - { label: "Photo", name: "photo", widget: "image" }
       - { label: "Bio", name: "body", widget: "markdown" }
