@@ -16,15 +16,15 @@
 
   {% include "navbar.njk" %}
 
-  <section class="section member-page">
+  <section class="section leader-page">
     <div class="container has-text-centered">
       <!-- Back to Team link -->
-      <p class="back-link"><a href="/members/">← Back to Our Team</a></p>
+      <p class="back-link"><a href="/leaders/">← Back to Our Team</a></p>
 
       <!-- Photo without Bulma image wrapper -->
       {% if photo %}
       <figure>
-        <img class="member-photo" src="{{ photo }}" alt="{{ name }}">
+        <img class="leader-photo" src="{{ photo }}" alt="{{ name }}">
       </figure>
       {% endif %}
 
@@ -36,11 +36,11 @@
 
       <!-- Role bold -->
       {% if role %}
-      <h3 class="subtitle member-role">{{ role }}</h3>
+      <h3 class="subtitle leader-role">{{ role }}</h3>
       {% endif %}
 
       <!-- Full bio left aligned -->
-      <div class="content member-info mt-4">
+      <div class="content leader-info mt-4">
         {{ content | safe }}
       </div>
     </div>

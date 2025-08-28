@@ -3,21 +3,20 @@ backend:
   repo: Symptom7489/pack156
   branch: main
 
-media_folder: images/members
-public_folder: /images/members
+media_folder: images/leadership
+public_folder: /images/leadership
 
 collections:
-  - name: "members"
-    label: "Members"
-    folder: "members"
+  - name: "leadershipo"
+    label: "Leaders"
+    folder: "leadership"
     create: true
     slug: "{{name}}"
     fields:
       - { label: "Name", name: "name", widget: "string" }
-      - { label: "Pronouns", name: "pronouns", widget: "string" }
       - { label: "Role", name: "role", widget: "string" }
       - { label: "Photo", name: "photo", widget: "image" }
       - { label: "Bio", name: "body", widget: "markdown" }
-      - { label: "Name", name: "layout", widget: "hidden", default: "layouts/members.njk" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/leadership.njk" }
       - {label: "Weight", name: "weight", widget: "number", default: 100}
 

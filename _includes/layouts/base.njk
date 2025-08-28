@@ -10,23 +10,10 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcYf9H4xI5zG2uK3sQkLqEwJc1U7xU7h7jX5B2p1LwG9C2yM6V3U7N2t2l1j0L9/wz0j8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/styles.css">
-  <style>
-    .banner {
-      width: 100%;
-      height: 250px;
-      background-size: cover;
-      background-position: center;
-      margin-bottom: .25rem;
-    }
-    </style>
 
 </head>
 <body class="flex-body">
   <header>
-    <!-- Banner (desktop only) -->
-    {% if site.logo %}
-    <div class="banner is-hidden-mobile" style="background-image: url('{{ site.logo }}');"></div>
-    {% endif %}
 
     <!-- Navbar -->
     {% include "navbar.njk" %}

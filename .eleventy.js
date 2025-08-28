@@ -10,8 +10,8 @@ module.exports = function (eleventyConfig) {
   // eleventyConfig.addPassthroughCopy("js");
 
   // ✅ Collection for members
-  eleventyConfig.addCollection("member", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("members/*.md").sort((a,b) => {
+  eleventyConfig.addCollection("leadership", function (collectionApi) {
+    return collectionApi.getFilteredByGlob("leadership/*.md").sort((a,b) => {
       return a.data.weight - b.data.weight;
     });
   });
