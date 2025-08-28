@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main   # your default branch
+
+media_folder: "static/uploads"   # where uploaded images will go
+public_folder: "/uploads"        # URL path to images
+
+collections:
+  - name: "members"
+    label: "Members"
+    folder: "members"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Pronouns", name: "pronouns", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image" }
+      - { label: "Bio", name: "body", widget: "markdown" }

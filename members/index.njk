@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+title: Our Members
+---
+<section class="section">
+  <div class="container px-4">
+    <div class="columns is-multiline is-flex is-align-items-stretch mt-4">
+      {% for member in collections.member %}
+        <div class="column is-6-mobile is-6-tablet is-3-desktop">
+          <a href="{{ member.url }}">
+            <div class="card">
+              {% if member.data.photo %}
+                <div class="card-image">
+                  <figure class="image">
+                    <div class="image-container">
+                      <img src="{{ member.data.photo }}" alt="{{ member.data.name }}">
+                    </div>
+                  </figure>
+                </div>
+              {% endif %}
+
+              <div class="card-content has-text-centered">
+                <p class="title is-6">{{ member.data.name }}</p>
+                {% if member.data.pronouns %}
+                <p class="subtitle is-7">{{ member.data.pronouns }}</p>
+                {% endif %}
+                <p class="subtitle is-7">{{ member.data.role }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

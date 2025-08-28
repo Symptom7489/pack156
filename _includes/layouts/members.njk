@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <!-- Banner (desktop only) -->
+  {% if site.logo %}
+  <div class="banner is-hidden-mobile" style="background-image: url('{{ site.logo }}');"></div>
+  {% endif %}
+
+  {% include "navbar.njk" %}
+
+  <section class="section member-page">
+    <div class="container has-text-centered">
+      <!-- Back to Team link -->
+      <p class="back-link"><a href="/members/">← Back to Our Team</a></p>
+
+      <!-- Photo without Bulma image wrapper -->
+      {% if photo %}
+      <figure>
+        <img class="member-photo" src="{{ photo }}" alt="{{ name }}">
+      </figure>
+      {% endif %}
+
+      <!-- Name centered -->
+      <h1 class="title">{{ name }}</h1>
+      {% if pronouns %}
+      <h2 class="subtitle">{{ pronouns }}</h2>
+      {% endif %}
+
+      <!-- Role bold -->
+      {% if role %}
+      <h3 class="subtitle member-role">{{ role }}</h3>
+      {% endif %}
+
+      <!-- Full bio left aligned -->
+      <div class="content member-info mt-4">
+        {{ content | safe }}
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,52 @@
+  <nav class="navbar" style="background-color: #2c3e50;" role="navigation" aria-label="main navigation">
+    <style>
+      /* Navbar link colors */
+      .navbar-item {
+        color: white !important;
+      }
+      .navbar-item:hover {
+        color: #31518F !important;
+      }
+
+      /* Burger icon color */
+      .navbar-burger span {
+        background-color: white;
+      }
+
+      /* Mobile dropdown background color */
+      .navbar-menu {
+        background-color: #2c3e50; /* same as navbar */
+      }
+
+      /* Ensure links stay white in mobile dropdown */
+      .navbar-menu .navbar-item {
+        color: white !important;
+      }
+      .navbar-menu .navbar-item:hover {
+        color: #2c3e50 !important;
+      }
+    </style>
+
+
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">DPEC</a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item" href="/about/">About Us</a>
+        <a class="navbar-item" href="/members/">Our Members</a>
+        <a class="navbar-item" href="/involved/">Get Involved</a>
+        <a class="navbar-item" href="/news/">News</a>
+        <a class="navbar-item" href="/events/">Events</a>
+        <a class="navbar-item" href="/resources/">Resources</a>
+        <a class="navbar-item" href="/contact/">Contact</a>
+      </div>
+    </div>
+  </nav>

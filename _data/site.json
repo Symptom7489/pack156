@@ -1,0 +1,10 @@
+{
+  "name": "Lafayette Parish Democratic Executive Committee",
+  "url": "https://www.lafayettedemocrats.com",
+  "socials": {
+    "facebook": "https://www.facebook.com/LafayetteDPEC/",
+    "email": "mailto:blue.lafayette.demo@gmail.com"
+  },
+  "contactFormLink": "/contact/",
+  "logo": "/images/background/dpec-banner.png"
+}
