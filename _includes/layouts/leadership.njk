@@ -1,37 +1,85 @@
-<section class="section leader-page">
-  <div class="container">
-    <p class="back-link has-text-centered-mobile"><a href="/leaders/">← Back to Our Team</a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
 
-    <div class="columns is-multiline">
+  <style>
+      .leader-photo {
+    max-width: 300px; /* Limits the maximum width */
+    height: auto;     /* Ensures the aspect ratio is maintained */
+    display: block;   /* Allows for centering */
+    margin: 0 auto;   /* Centers the image */
+  }
 
-      <div class="column is-one-third-desktop is-half-tablet has-text-centered">
-        {% if photo %}
-        <figure>
-          <img class="leader-photo" src="{{ photo }}" alt="{{ name }}">
-        </figure>
-        {% endif %}
+  /* Makes the photo smaller on screens less than 769px wide (mobile) */
+  @media screen and (max-width: 768px) {
+    .leader-photo {
+      max-width: 200px;
+    }
+  }
+
+
+  /* Text formatting */
+  .leader-page .leader-info {
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .leader-page .leader-role {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Back link styling */
+  .leader-page .back-link {
+    margin-bottom: 1rem;
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #2c3e50;
+  }
+
+  .leader-page .back-link:hover {
+    text-decoration: underline;
+  }
+  </style>
+</head>
+<body>
+
+  {% include "navbar.njk" %}
+
+  <section class="section leader-page">
+    <div class="container has-text-centered">
+      <!-- Back to Team link -->
+      <p class="back-link"><a href="/leadership/">← Back to Our Leaders</a></p>
+
+      <!-- Photo without Bulma image wrapper -->
+      {% if photo %}
+
+        <img class="leader-photo" src="{{ photo }}" alt="{{ name }}">
+
+      {% endif %}
+
+      <!-- Name centered -->
+      <h1 class="title">{{ name }}</h1>
+      {% if pronouns %}
+      <h2 class="subtitle">{{ pronouns }}</h2>
+      {% endif %}
+
+      <!-- Role bold -->
+      {% if role %}
+      <h3 class="subtitle leader-role">{{ role }}</h3>
+      {% endif %}
+
+      <!-- Full bio left aligned -->
+      <div class="content leader-info mt-4">
+        {{ content | safe }}
       </div>
-
-      <div class="column is-two-thirds-desktop is-half-tablet">
-        <h1 class="title is-4">{{ name }}</h1>
-        {% if pronouns %}
-        <h2 class="subtitle is-6">{{ pronouns }}</h2>
-        {% endif %}
-        {% if role %}
-        <h3 class="subtitle is-6">{{ role }}</h3>
-        {% endif %}
-
-        <div class="content leader-info mt-4">
-          {{ content | safe }}
-        </div>
-
-        <div class="mt-5">
-          <figure>
-            <img class="second-image" src="/path/to/your/second/image.jpg" alt="Second Image">
-          </figure>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
+</body>
+</html>

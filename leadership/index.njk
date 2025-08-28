@@ -11,19 +11,26 @@ title: Leadership
             <div class="card">
               {% if leader.data.photo %}
                 <div class="card-image">
-                  <figure class="image">
+                  <figure class="image is-4by3">
                     <div class="image-container">
                       <img src="{{ leader.data.photo }}" alt="{{ leader.data.name }}">
                     </div>
                   </figure>
                 </div>
               {% endif %}
-
               <div class="card-content has-text-centered">
-                <p class="title is-6">{{ leader.data.name }}</p>
-                {% if leader.data.pronouns %}
-                <p class="subtitle is-7">{{ leader.data.pronouns }}</p>
+                <div class="is-flex is-align-items-center is-justify-content-center">
+                  <p class="title is-6 mb-0">{{ leader.data.name }}</p>
+
+                  {% if leader.data.rank_photo %}
+                    <img class="image is-48x48 ml-2" src="{{ leader.data.rank_photo }}" alt="{{ leader.data.rank }}">
+                  {% endif %}
+                </div>
+
+                {% if leader.data.rank %}
+                  <p class="subtitle is-7 mt-0">{{ leader.data.rank }}</p>
                 {% endif %}
+
                 <p class="subtitle is-7">{{ leader.data.role }}</p>
               </div>
             </div>

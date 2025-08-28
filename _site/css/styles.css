@@ -22,7 +22,7 @@ html {
 
 body {
   /* Combined from the first block */
-  background: linear-gradient(315deg, #3D5B78 0%, #7798abff 100%);
+  background: linear-gradient(315deg, #2178DD 0%, #F8CF6A 100%);
   background-attachment: fixed;
   color: #211a1e;
 
@@ -61,23 +61,20 @@ body {
   flex-grow: 1;
 
 ############### Leadership Layout########################
-  /* Center photo and fixed size */
   .leader-photo {
-    width: 300px;
-    height: 300px;
-    object-fit: contain; /* crop while preserving aspect ratio */
-    border-radius: 4px;
-    margin: 0 auto 1rem auto;
-    display: block;
+    max-width: 300px; /* Limits the maximum width */
+    height: auto;     /* Ensures the aspect ratio is maintained */
+    display: block;   /* Allows for centering */
+    margin: 0 auto;   /* Centers the image */
   }
 
-  /* Mobile responsive photo */
-  @media (max-width: 768px) {
+  /* Makes the photo smaller on screens less than 769px wide (mobile) */
+  @media screen and (max-width: 768px) {
     .leader-photo {
-      width: 150px;
-      height: 150px;
+      max-width: 200px;
     }
   }
+
 
   /* Text formatting */
   .leader-page .leader-info {
@@ -104,7 +101,6 @@ body {
   }
 
   ##################### Leader Cards ####################
-
   .card-image .image-container {
     position: relative;
     overflow: hidden;
