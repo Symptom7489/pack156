@@ -39,7 +39,6 @@ layout: "layouts/base.njk"
           {% for item in photos %}
             {{ item | dump}}
             <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
-            <p>Image Path: {{ item.photo }}</p>  <-- Add this temporary line
               <figure class="image is-square">
                 <img src="{{ item.photo }}" alt="{{ title }}">
               </figure>
