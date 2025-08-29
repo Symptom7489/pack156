@@ -3,11 +3,11 @@ backend:
   repo: Symptom7489/pack156
   branch: main
 
-media_folder: images/leadership
-public_folder: /images/leadership
+media_folder: "images"
+public_folder: "/images"
 
 collections:
-  - name: "leadershipo"
+  - name: "leadership"
     label: "Leaders"
     folder: "leadership"
     create: true
@@ -20,3 +20,24 @@ collections:
       - { label: "Bio", name: "body", widget: "markdown" }
       - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/leadership.njk" }
       - { label: "Weight", name: "weight", widget: "number", default: 100 }
+
+  - name: "adventures"
+    label: "Adventures"
+    folder: "adventures"
+    create: true
+    slug: "{{title}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image" }
+      - label: "Description"
+        name: "description"
+        widget: "markdown"
+        required: false
+      - label: "People in Photo"
+        name: "people"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventure.njk" }
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: "/adventures/{{slug}}/" }

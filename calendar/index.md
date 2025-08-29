@@ -3,7 +3,9 @@ layout: layouts/base.njk
 title: Calendar
 ---
 
-# Calendar
+  <div class="container">
+    <h1 class="title has-text-centered">{{ title }}</h1>
+    </div>
 
 Check out upcoming events in Lafayette Parish:
 
