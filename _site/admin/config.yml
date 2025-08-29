@@ -39,5 +39,4 @@ collections:
         required: false
         fields:
           - { label: "Name", name: "name", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventure.njk" }
-      - { label: "Permalink", name: "permalink", widget: "hidden", default: "/adventures/{{slug}}/" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventures.njk" }
