@@ -2,17 +2,19 @@
 layout: "layouts/base.njk"
 ---
 
+
 <section class="section">
   <div class="container">
     <div class="columns is-multiline is-centered">
-      <div class="column is-full has-text-centered">
-        <h1 class="title is-2">{{ title }}</h1>
+
+      <div class="column is-full has-text-left mb-4">
+        <a href="/adventures/" class="button is-text is-small">
+          &lt; Back to Our Adventures
+        </a>
       </div>
 
       <div class="column is-full has-text-centered">
-        <figure class="image">
-          <img src="{{ cover_photo }}" alt="{{ title }}">
-        </figure>
+        <h1 class="title is-2">{{ title }}</h1>
       </div>
 
       <div class="column is-full has-text-left mt-5">
@@ -20,24 +22,32 @@ layout: "layouts/base.njk"
           {% if description %}
             <h3>Description</h3>
             {{ description | safe }}
+          {% endif %}
 
+          {% if people %}
+            <h3>People in this Photo</h3>
+            <ul>
+              {% for person in people %}
+              <li>{{ person.name }}</li>
+              {% endfor %}
             </ul>
           {% endif %}
         </div>
       </div>
 
-      <div class="column is-full has-text-centered mt-5">
-        <h2 class="title is-4">Album</h2>
-        <div class="columns is-multiline is-centered">
-          {% for item in photos %}
-            <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
-              <figure class="image is-square">
+    <div class="column is-full has-text-centered mt-5">
+      <div class="columns is-multiline is-centered">
+        {% for item in photos %}
+          <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
+            <figure class="image is-square">
+              <a href="{{ item.photo }}" target="_blank">
                 <img src="{{ item.photo }}" alt="{{ title }}">
-              </figure>
-            </div>
-          {% endfor %}
-        </div>
+              </a>
+            </figure>
+          </div>
+        {% endfor %}
       </div>
+    </div>
     </div>
   </div>
 </section>
