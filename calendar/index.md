@@ -1,17 +1,22 @@
 ---
-layout: layouts/base.njk
-title: Calendar
+layout: "layouts/base.njk"
+title: "Pack Calendar"
+eleventyNavigation:
+  key: "Calendar"
+  order: 3
 ---
-
+<section class="section">
   <div class="container">
     <h1 class="title has-text-centered">{{ title }}</h1>
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <iframe src="https://calendar.google.com/calendar/embed?src=f3987831cb013970d61b4e9a496d348a965e9748d99aa729884f2bcc90f56837%40group.calendar.google.com&ctz=America%2FChicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+      <div class="column is-one-quarter">
+        <h2 class="title is-4">Sign Up Forms</h2>
+        <div class="content">
+          </div>
+      </div>
     </div>
-
-Check out upcoming events in Lafayette Parish:
-
-- Event 1 – Date / Location  
-- Event 2 – Date / Location  
-
-*You can later link this to Google Calendar*
-
-*Sign up links on side*
+  </div>
+</section>
