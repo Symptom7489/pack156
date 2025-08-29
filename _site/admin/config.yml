@@ -7,7 +7,7 @@ media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "leadership"
+  - name: "leadership" # <-- Add this hyphen
     label: "Leaders"
     folder: "leadership"
     create: true
@@ -19,15 +19,12 @@ collections:
       - { label: "Photo", name: "photo", widget: "image" }
       - { label: "Bio", name: "body", widget: "markdown" }
       - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/leadership.njk" }
-      - { label: "Weight", name: "weight", widget: "number", default: 100 }
 
-- name: "adventures"
+  - name: "adventures"
     label: "Adventures"
     folder: "adventures"
     create: true
     slug: "{{title}}"
-    media_folder: "images/adventures"
-    public_folder: "/images/adventures"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Cover Photo", name: "cover_photo", widget: "image", path: "{{slug}}/cover-{{extension}}" }
@@ -40,5 +37,4 @@ collections:
         name: "description"
         widget: "markdown"
         required: false
-      - { label: "People in Photo", name: "people", widget: "list", required: false, fields: [{ label: "Name", name: "name", widget: "string" }] }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventure.njk" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventures.njk" }

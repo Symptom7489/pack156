@@ -8,5 +8,5 @@ photos:
   - /images/adventures/524193780_10100898760867850_2728270442206231760_n.jpg
   - /images/adventures/523721459_10100898761007570_8833606611389443798_n.jpg
   - /images/adventures/524467365_10100898761631320_4807463271204964691_n.jpg
-layout: layouts/adventure.njk
+layout: layouts/adventures.njk
 ---

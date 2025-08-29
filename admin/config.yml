@@ -25,8 +25,6 @@ collections:
     folder: "adventures"
     create: true
     slug: "{{title}}"
-    media_folder: "images/adventures"
-    public_folder: "/images/adventures"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Cover Photo", name: "cover_photo", widget: "image", path: "{{slug}}/cover-{{extension}}" }
@@ -39,5 +37,4 @@ collections:
         name: "description"
         widget: "markdown"
         required: false
-      - { label: "People in Photo", name: "people", widget: "list", required: false, fields: [{ label: "Name", name: "name", widget: "string" }] }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventure.njk" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventures.njk" }
