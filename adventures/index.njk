@@ -1,6 +1,6 @@
 ---
 layout: "layouts/base.njk"
-title: "My Adventures"
+title: "Our Adventures"
 permalink: "/adventures/index.html"
 eleventyNavigation:
   key: "Adventures"
@@ -18,7 +18,7 @@ eleventyNavigation:
           <div class="card-image">
             <figure class="image is-square">
               <a href="{{ adventure.url }}">
-                <img src="{{ adventure.data.photo }}" alt="{{ adventure.data.title }}">
+                <img src="{{ adventure.data.cover_photo }}" alt="{{ adventure.data.title }}">
               </a>
             </figure>
           </div>

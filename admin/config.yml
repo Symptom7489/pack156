@@ -28,15 +28,16 @@ collections:
     slug: "{{title}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Photo", name: "photo", widget: "image" }
+      - { label: "Cover Photo", name: "cover_photo", widget: "image" }
+      - label: "Photos"
+        name: "photos"
+        widget: "list"
+        required: false
+        field: { label: "Photo", name: "photo", widget: "image" }
       - label: "Description"
         name: "description"
         widget: "markdown"
         required: false
-      - label: "People in Photo"
-        name: "people"
-        widget: "list"
-        required: false
-        fields:
-          - { label: "Name", name: "name", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventures.njk" }
+      - { label: "People in Photo", name: "people", widget: "list", required: false, fields: [{ label: "Name", name: "name", widget: "string" }] }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventure.njk" }
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: "/adventures/{{slug}}/" }

@@ -7,9 +7,6 @@ layout: "layouts/base.njk"
     <div class="columns is-multiline">
       <div class="column is-full has-text-centered">
         <h1 class="title is-2">{{ title }}</h1>
-        <figure class="image">
-          <img src="{{ photo }}" alt="{{ title }}">
-        </figure>
       </div>
 
       <div class="column is-full has-text-left mt-5">
@@ -27,6 +24,19 @@ layout: "layouts/base.njk"
             {% endfor %}
             </ul>
           {% endif %}
+        </div>
+      </div>
+
+      <div class="column is-full has-text-centered mt-5">
+        <h2 class="title is-4">Album</h2>
+        <div class="columns is-multiline is-centered">
+          {% for photo in photos %}
+            <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
+              <figure class="image is-square">
+                <img src="{{ photo.photo }}" alt="{{ title }}">
+              </figure>
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>
