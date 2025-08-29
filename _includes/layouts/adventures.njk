@@ -20,8 +20,8 @@ layout: "layouts/base.njk"
       <div class="column is-full has-text-left mt-5">
         <div class="content">
           {% if description %}
-            <h3>Description</h3>
-            {{ description | safe }}
+
+           <h3> {{ description | safe }} </h3>
           {% endif %}
 
           {% if people %}
@@ -36,7 +36,6 @@ layout: "layouts/base.njk"
       </div>
 
     <div class="column is-full has-text-centered mt-5">
-      <h2 class="title is-4">{{ title }}</h2>
       <div class="columns is-multiline is-centered">
         {% for item in photos %}
           <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
