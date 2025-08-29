@@ -21,7 +21,7 @@ collections:
       - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/leadership.njk" }
       - { label: "Weight", name: "weight", widget: "number", default: 100 }
 
-  - name: "adventures"
+- name: "adventures"
     label: "Adventures"
     folder: "adventures"
     create: true
@@ -30,16 +30,15 @@ collections:
     public_folder: "/images/adventures"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Cover Photo", name: "cover_photo", widget: "image" }
+      - { label: "Cover Photo", name: "cover_photo", widget: "image", path: "{{slug}}/cover-{{extension}}" }
       - label: "Photos"
         name: "photos"
         widget: "list"
         required: false
-        field: { label: "Photo", name: "photo", widget: "image" }
+        field: { label: "Photo", name: "photo", widget: "image", path: "{{slug}}/{{filename}}" }
       - label: "Description"
         name: "description"
         widget: "markdown"
         required: false
       - { label: "People in Photo", name: "people", widget: "list", required: false, fields: [{ label: "Name", name: "name", widget: "string" }] }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventures.njk" }
-      - { label: "Permalink", name: "permalink", widget: "hidden", default: "/adventures/{{slug}}/" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventure.njk" }

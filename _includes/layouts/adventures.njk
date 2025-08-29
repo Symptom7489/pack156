@@ -4,9 +4,15 @@ layout: "layouts/base.njk"
 
 <section class="section">
   <div class="container">
-    <div class="columns is-multiline">
+    <div class="columns is-multiline is-centered">
       <div class="column is-full has-text-centered">
         <h1 class="title is-2">{{ title }}</h1>
+      </div>
+
+      <div class="column is-full has-text-centered">
+        <figure class="image">
+          <img src="{{ cover_photo }}" alt="{{ title }}">
+        </figure>
       </div>
 
       <div class="column is-full has-text-left mt-5">
@@ -19,9 +25,9 @@ layout: "layouts/base.njk"
           {% if people %}
             <h3>People in this Photo</h3>
             <ul>
-            {% for person in people %}
+              {% for person in people %}
               <li>{{ person.name }}</li>
-            {% endfor %}
+              {% endfor %}
             </ul>
           {% endif %}
         </div>
@@ -30,10 +36,12 @@ layout: "layouts/base.njk"
       <div class="column is-full has-text-centered mt-5">
         <h2 class="title is-4">Album</h2>
         <div class="columns is-multiline is-centered">
-          {% for photo in photos %}
+          {% for item in photos %}
+            {{ item | dump}}
             <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
+            <p>Image Path: {{ item.photo }}</p>  <-- Add this temporary line
               <figure class="image is-square">
-                <img src="{{ photo.photo }}" alt="{{ title }}">
+                <img src="{{ item.photo }}" alt="{{ title }}">
               </figure>
             </div>
           {% endfor %}
