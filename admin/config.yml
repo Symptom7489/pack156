@@ -7,7 +7,7 @@ media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "leadership" # <-- Add this hyphen
+  - name: "leadership"
     label: "Leaders"
     folder: "leadership"
     create: true
@@ -25,16 +25,20 @@ collections:
     folder: "adventures"
     create: true
     slug: "{{title}}"
+    media_folder: "images"
+    public_folder: "/images"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Cover Photo", name: "cover_photo", widget: "image", path: "{{slug}}/cover-{{extension}}" }
-      - label: "Photos"
+        - { label: "Title", name: "title", widget: "string" }
+        - { label: "Cover Photo", name: "cover_photo", widget: "image", path: "adventures/{{slug}}/cover-{{extension}}" }
+        - label: "Photos"
         name: "photos"
         widget: "list"
         required: false
-        fields: { label: "Photo", name: "photo", widget: "image", path: "{{slug}}/{{filename}}" }
-      - label: "Description"
+        fields: # <-- This line is correct
+            - { label: "Photo", name: "photo", widget: "image", path: "adventures/{{slug}}/{{filename}}" } # <-- Add the hyphen here
+        - label: "Description"
         name: "description"
         widget: "markdown"
         required: false
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventures.njk" }
+        - { label: "People in Photo", name: "people", widget: "list", required: false, fields: [{ label: "Name", name: "name", widget: "string" }] }
+        - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventures.njk" }
