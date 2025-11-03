@@ -60,6 +60,14 @@ body {
 .flex-main {
   flex-grow: 1;
 
+.scout-font {
+  /* Applying the imported Google Font */
+  font-family: 'Luckiest Guy', cursive; 
+  /* Also removing the default title bold weight for a cleaner look */
+  font-weight: 400; 
+}
+
+
 ############### Leadership Layout########################
   .leader-photo {
     max-width: 300px; /* Limits the maximum width */
@@ -115,6 +123,51 @@ body {
     height: 100%;
     object-fit: cover; /* Crops the image to fill the container */
   }
+
+  ###############Contact Form#################
+
+ /* --- Reusable Scout Button Base Styles (Applies to both <button> and <a>) --- */
+button.scout-button,
+a.scout-button {
+  /* 1. Core Button Appearance & Structure */
+  display: inline-block; /* Crucial for links to accept height/width/padding */
+  padding: 0.75em 1.5em; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  text-align: center;
+  line-height: 1.25;
+  text-decoration: none; /* Crucial for links: removes the default underline */
+
+  /* 2. Custom Colors */
+  background-color: #031d44;
+  color: #F8CF6A !important; 
+  border: 2px solid #031d44; 
+
+  /* 3. Custom Typography */
+  font-family: inherit;
+  font-size: 1.15rem; 
+  font-weight: bold; 
+
+  /* 4. Smooth Transition */
+  transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease; 
+}
+
+/* --- Hover State (Applies to both <button> and <a>) --- */
+button.scout-button:hover,
+a.scout-button:hover {
+  background-color: #052c67; 
+  border-color: #052c67;
+  color: #F8CF6A !important; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* --- Focus State (Applies to both <button> and <a>) --- */
+button.scout-button:focus,
+a.scout-button:focus {
+  outline: none; 
+  border-color: #F8CF6A;
+  box-shadow: 0 0 0 3px rgba(248, 207, 106, 0.5);
+}
 
   ############### Footer ##################
 
