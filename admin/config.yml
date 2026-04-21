@@ -44,7 +44,9 @@ collections:
         widget: "list"
         required: false
         field:
-          - { label: "Photo", name: "photo", widget: "image" }
+          label: "Photo"
+          name: "photo"
+          widget: "image"
       - label: "Description"
         name: "description"
         widget: "markdown"
