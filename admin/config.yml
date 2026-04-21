@@ -18,7 +18,12 @@ collections:
       - { label: "Rank Photo", name: "rank_photo", widget: "image" }
       - { label: "Photo", name: "photo", widget: "image" }
       - { label: "Bio", name: "body", widget: "markdown" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/leadership.njk" }
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "layouts/leadership.njk",
+        }
   - name: "adventures"
     label: "Adventures"
     folder: "adventures"
@@ -28,16 +33,32 @@ collections:
     public_folder: "/images"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Cover Photo", name: "cover_photo", widget: "image", path: "adventures/{{slug}}/cover-{{extension}}" }
+      - {
+          label: "Cover Photo",
+          name: "cover_photo",
+          widget: "image",
+          path: "adventures/{{slug}}/cover-{{extension}}",
+        }
       - label: "Photos"
         name: "photos"
         widget: "list"
         required: false
-        fields:
-          - { label: "Photo", name: "photo", widget: "image", path: "adventures/{{slug}}/{{filename}}" }
+        field:
+          - { label: "Photo", name: "photo", widget: "image" }
       - label: "Description"
         name: "description"
         widget: "markdown"
         required: false
-      - { label: "People in Photo", name: "people", widget: "list", required: false, fields: [{ label: "Name", name: "name", widget: "string" }] }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/adventures.njk" }
+      - {
+          label: "People in Photo",
+          name: "people",
+          widget: "list",
+          required: false,
+          fields: [{ label: "Name", name: "name", widget: "string" }],
+        }
+      - {
+          label: "Layout",
+          name: "layout",
+          widget: "hidden",
+          default: "layouts/adventures.njk",
+        }
