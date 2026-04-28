@@ -352,15 +352,47 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadBtn.disabled = false;
 
     if (uploaded.length > 0) {
-      resultsBox.style.display = 'block';
-      resultsBox.className = 'notification is-success mt-4';
-      resultsBox.innerHTML = `
-        <p class="mb-2"><strong>✓ ${uploaded.length} photo${uploaded.length !== 1 ? 's' : ''} uploaded successfully!</strong></p>
-        <p class="mb-2 is-size-7">Use these paths in the CMS under the adventure's Photos section:</p>
-        <ul>
-          ${uploaded.map(p => `<li><code>${p}</code></li>`).join('')}
-        </ul>
-      `;
+      const title = document.getElementById('adventure-title').value;
+      const date = document.getElementById('adventure-date').value;
+      const summary = document.getElementById('adventure-summary').value;
+
+      progressLabel.textContent = "Creating adventure entry on the website...";
+
+      try {
+        const mdRes = await fetch('/.netlify/functions/create-adventure', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title,
+            date,
+            summary,
+            slug: adventure, 
+            photos: uploaded 
+          })
+        });
+
+        if (mdRes.ok) {
+          resultsBox.style.display = 'block';
+          resultsBox.className = 'notification is-success mt-4';
+          resultsBox.innerHTML = `
+            <p class="title is-5">✅ All Done!</p>
+            <p>The <strong>${title}</strong> adventure has been created with ${uploaded.length} photos.</p>
+            <p class="is-size-7 mt-2">The site is rebuilding now. It will appear on the homepage in a few minutes.</p>
+          `;
+          // Clear the form so they don't double-post
+          selectedFiles = [];
+          previewGrid.innerHTML = '';
+          adventureInput.value = '';
+          document.getElementById('adventure-title').value = '';
+          document.getElementById('adventure-summary').value = '';
+        } else {
+          throw new Error("Failed to create markdown file");
+        }
+      } catch (err) {
+        resultsBox.style.display = 'block';
+        resultsBox.className = 'notification is-danger mt-4';
+        resultsBox.innerHTML = `<strong>Error:</strong> The photos uploaded, but we couldn't create the adventure page. You may need to add them manually in the CMS.`;
+      }
     }
     if (errors.length > 0) {
       const errBox = document.createElement('div');
