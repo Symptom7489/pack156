@@ -47,7 +47,7 @@ exports.handler = async (event) => {
   }
 
   const requestBody = JSON.stringify({
-    message: `Upload photo: ${filename} for ${adventure}`,
+    message: `Upload photo: ${filename} for ${adventure} [skip ci]`,
     content: content,
     branch: GITHUB_BRANCH,
     ...(sha ? { sha } : {}),
