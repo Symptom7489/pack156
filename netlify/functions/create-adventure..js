@@ -5,15 +5,15 @@ exports.handler = async (event) => {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
   // Format the YAML frontmatter
-  const content = `---
-layout: layouts/adventure.njk
+const content = `---
+layout: "layouts/adventure.njk"
 title: "${title}"
 date: ${date}
 description: "${summary}"
+cover_photo: "${photos[0]}"  <-- Add this line
 photos:
 ${photos.map(p => `  - "${p}"`).join('\n')}
 ---
-
 ${summary}
 `;
 
