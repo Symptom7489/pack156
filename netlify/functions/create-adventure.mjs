@@ -18,7 +18,7 @@ export const handler = async (event) => { // Use 'export const' instead of 'expo
     const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
     const content = `---
-layout: "layouts/adventure.njk"
+layout: "layouts/adventures.njk"
 title: "${title}"
 date: ${date}
 tags: adventures

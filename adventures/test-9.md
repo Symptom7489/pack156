@@ -1,5 +1,5 @@
 ---
-layout: "layouts/adventure.njk"
+layout: "layouts/adventures.njk"
 title: "test 9"
 date: 2026-04-28
 tags: adventures
