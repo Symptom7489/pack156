@@ -93,6 +93,11 @@
       }
     }
 
+    // Check immediately for already-logged-in users
+    const currentUser = netlifyIdentity.currentUser();
+    if (currentUser) applyNav(currentUser);
+
+    // Still listen for init in case currentUser isn't ready yet
     netlifyIdentity.on('init', user => applyNav(user));
     netlifyIdentity.on('login', user => {
       applyNav(user);
