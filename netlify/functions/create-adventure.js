@@ -10,7 +10,7 @@ layout: "layouts/adventure.njk"
 title: "${title}"
 date: ${date}
 description: "${summary}"
-cover_photo: "${photos[0]}"  <-- Add this line
+cover_photo: "${photos[0]}"  
 photos:
 ${photos.map(p => `  - "${p}"`).join('\n')}
 ---
@@ -21,7 +21,7 @@ ${summary}
     await octokit.repos.createOrUpdateFileContents({
       owner: 'Symptom7489',
       repo: 'pack156',
-      path: `src/adventures/${slug}.md`, // Adjust path to match your project
+      path: `adventures/${slug}.md`, 
       message: `Create adventure: ${title}`,
       content: Buffer.from(content).toString('base64'),
     });
