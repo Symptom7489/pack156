@@ -1,6 +1,6 @@
 <nav class="navbar" style="background-color: #031d44;" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <img src="/images/background/cub-scout-logo-55x55.png" alt="Cub Scout Troop Logo" />
+    <a href="/"><img src="/images/background/cub-scout-logo-55x55.png" alt="Cub Scout Troop Logo" /></a>
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
       <span aria-hidden="true" style="color: #F8CF6A"></span>
       <span aria-hidden="true" style="color: #F8CF6A"></span>
@@ -12,19 +12,18 @@
     <div class="navbar-start">
       <!-- Always visible -->
       <a class="navbar-item" href="/">Our Pack</a>
-      <a class="navbar-item" href="/contact/">Join our Pack</a>
+      <a class="navbar-item nav-loggedout" href="/contact/">Join our Pack</a>
       <a class="navbar-item" href="/leadership/">Leadership</a>
       <a class="navbar-item" href="/calendar/">Calendar</a>
       <a class="navbar-item" href="/adventures/">Adventures</a>
 
       <!-- Parent + Admin only -->
-      <a class="navbar-item nav-members" href="/members/" style="display:none;">Members Area</a>
+      <a class="navbar-item nav-members" href="/calendar/" style="display:none;">Calendar Area</a>
       <a class="navbar-item nav-members" href="/members/events/" style="display:none;">Events</a>
       <a class="navbar-item nav-members" href="/members/forms/" style="display:none;">Forms</a>
 
       <!-- Admin only -->
       <a class="navbar-item nav-admin" href="/admin/upload/" style="display:none;">📸 Upload Photos</a>
-      <a class="navbar-item nav-admin" href="/admin/" style="display:none;">⚙️ CMS</a>
     </div>
 
     <div class="navbar-end">
