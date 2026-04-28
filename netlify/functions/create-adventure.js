@@ -1,33 +1,54 @@
 const { Octokit } = require("@octokit/rest");
 
 exports.handler = async (event) => {
-  const { title, date, summary, slug, photos } = JSON.parse(event.body);
-  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+  // 1. Log the incoming request to see what's happening
+  console.log("Function triggered with body:", event.body);
 
-  // Format the YAML frontmatter
-const content = `---
+  if (!process.env.GITHUB_TOKEN) {
+    console.error("ERROR: GITHUB_TOKEN is missing from Netlify environment variables!");
+    return { statusCode: 500, body: JSON.stringify({ error: "Server configuration error" }) };
+  }
+
+  try {
+    const { title, date, summary, slug, photos } = JSON.parse(event.body);
+    const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+    const content = `---
 layout: "layouts/adventure.njk"
 title: "${title}"
 date: ${date}
+tags: adventures
 description: "${summary}"
-cover_photo: "${photos[0]}"  
+cover_photo: "${photos[0]}"
 photos:
 ${photos.map(p => `  - "${p}"`).join('\n')}
 ---
+
 ${summary}
 `;
 
-  try {
-    await octokit.repos.createOrUpdateFileContents({
+    // 2. Perform the GitHub API call
+    const response = await octokit.repos.createOrUpdateFileContents({
       owner: 'Symptom7489',
       repo: 'pack156',
-      path: `adventures/${slug}.md`, 
+      path: `adventures/${slug}.md`, // Root folder path
       message: `Create adventure: ${title}`,
       content: Buffer.from(content).toString('base64'),
     });
 
-    return { statusCode: 200, body: JSON.stringify({ success: true }) };
+    console.log("GitHub Response:", response.status);
+
+    return { 
+      statusCode: 200, 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ success: true }) 
+    };
+
   } catch (error) {
-    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+    console.error("Function Error:", error.message);
+    return { 
+      statusCode: 500, 
+      body: JSON.stringify({ error: error.message }) 
+    };
   }
 };
