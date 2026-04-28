@@ -14,16 +14,24 @@ eleventyNavigation:
     <div class="columns is-multiline is-centered">
       {% for adventure in collections.adventures %}
       <div class="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
-        <div class="card">
+        <div class="card" style="border-radius: 12px; overflow: hidden; box-shadow: none; border: 1px solid #eee;">
           <div class="card-image">
             <figure class="image is-square">
               <a href="{{ adventure.url }}">
-                <img src="{{ adventure.data.cover_photo }}" alt="{{ adventure.data.title }}">
+                <img src="{{ adventure.data.cover_photo }}" 
+                    alt="{{ adventure.data.title }}"
+                    style="object-fit: cover;">
               </a>
             </figure>
           </div>
           <div class="card-content has-text-centered">
-            <p class="title is-6"><a href="{{ adventure.url }}">{{ adventure.data.title }}</a></p>
+            <a href="{{ adventure.url }}" 
+              class="has-text-black" 
+              style="text-decoration: none;">
+              <p class="title is-4" style="font-weight: 800;">
+                {{ adventure.data.title }}
+              </p>
+            </a>
           </div>
         </div>
       </div>

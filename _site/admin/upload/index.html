@@ -9,7 +9,7 @@
   <script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcYf9H4xI5zG2uK3sQkLqEwJc1U7xU7h7jX5B2p1LwG9C2yM6V3U7N2t2l1j0L9/wz0j8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="icon" type="image/png" href="/images/background/cub-scout-logo-55x55.png" sizes="32x32">
   <link rel="shortcut icon" href="/images/background/cub-scout-logo-55x55.png">
@@ -196,15 +196,40 @@
 
         <!-- Adventure selector -->
         <div class="box mb-5">
-          <div class="field">
-            <label class="label is-medium">Which adventure are these photos for?</label>
-            <div class="control">
-              <input class="input is-medium" type="text" id="adventure-name"
-                placeholder="e.g. Swamp Tour, Pinewood Derby, Camping Trip..."
-                autocomplete="off">
+            <div class="field">
+                <label class="label">Folder Name (URL Slug)</label>
+                <div class="control">
+                <input class="input" type="text" id="adventure-name" 
+                        placeholder="e.g. swamp-tour-2026" autocomplete="off">
+                </div>
+                <p class="help">No spaces or special characters. This creates the folder and the web address.</p>
             </div>
-            <p class="help">This determines the folder the photos are saved to. Use the same name as the adventure in the CMS.</p>
-          </div>
+
+            <hr>
+
+            <div class="field">
+                <label class="label">Adventure Title</label>
+                <div class="control">
+                <input class="input" type="text" id="adventure-title" 
+                        placeholder="e.g. 2026 Swamp Tour Adventure">
+                </div>
+                <p class="help">This is the big heading people see on the page.</p>
+            </div>
+
+            <div class="field">
+                <label class="label">Date of Adventure</label>
+                <div class="control">
+                <input class="input" type="date" id="adventure-date">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Summary / Description</label>
+                <div class="control">
+                <textarea class="textarea" id="adventure-summary" 
+                            placeholder="Tell us what the scouts did!"></textarea>
+                </div>
+            </div>
         </div>
 
         <!-- Drop zone -->
@@ -241,18 +266,6 @@
           <!-- Results -->
           <div id="results-box" class="notification mt-4" style="display:none;"></div>
         </div>
-
-        <!-- Instructions -->
-        <div class="box mt-4">
-          <p class="title is-6">📋 After uploading</p>
-          <ol>
-            <li>Go to the <a href="/admin/">CMS</a> and open the adventure</li>
-            <li>In the <strong>Photos</strong> section, click <strong>Add photo</strong></li>
-            <li>Type the path shown after upload (e.g. <code>/images/adventures/swamp-tour/photo.jpg</code>)</li>
-            <li>Save the adventure</li>
-          </ol>
-        </div>
-
       </div>
     </div>
   </div>
@@ -354,14 +367,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Upload
-  uploadBtn.addEventListener('click', async () => {
-    const adventure = adventureInput.value.trim();
-    if (!adventure) {
-      adventureInput.focus();
-      adventureInput.classList.add('is-danger');
-      return;
-    }
-    adventureInput.classList.remove('is-danger');
+    uploadBtn.addEventListener('click', async () => {
+        // 1. Grab all the new values from the HTML
+        const adventure = adventureInput.value.trim(); // This is the 'adventure-name' slug
+        const title = document.getElementById('adventure-title').value.trim();
+        const date = document.getElementById('adventure-date').value;
+        const summary = document.getElementById('adventure-summary').value;
+
+        // 2. Validation: Make sure the basics are filled out
+        if (!adventure || !title || !date) {
+            if (!adventure) adventureInput.classList.add('is-danger');
+            if (!title) document.getElementById('adventure-title').classList.add('is-danger');
+            if (!date) document.getElementById('adventure-date').classList.add('is-danger');
+            
+            alert("Please fill in the Folder Name, Title, and Date.");
+            return;
+        }
+
+        adventureInput.classList.remove('is-danger');
+        document.getElementById('adventure-title').classList.remove('is-danger');
+        document.getElementById('adventure-date').classList.remove('is-danger');
 
     if (selectedFiles.length === 0) return;
 
