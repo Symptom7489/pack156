@@ -19,26 +19,116 @@
   <header>
 
     <!-- Navbar -->
-      <nav class="navbar" style="background-color: #031d44;" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <img src="/images/background/cub-scout-logo-55x55.png" alt="Cub Scout Troop Logo" />
-      <a role="button" class="navbar-burger"  aria-label="menu" aria-expanded="false" data-target="navMenu">
-        <span aria-hidden="true" style="color: #F8CF6A"></span>
-        <span aria-hidden="true" style="color: #F8CF6A"></span>
-        <span aria-hidden="true" style="color: #F8CF6A"></span>
-      </a>
+    <nav class="navbar" style="background-color: #031d44;" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <img src="/images/background/cub-scout-logo-55x55.png" alt="Cub Scout Troop Logo" />
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+      <span aria-hidden="true" style="color: #F8CF6A"></span>
+      <span aria-hidden="true" style="color: #F8CF6A"></span>
+      <span aria-hidden="true" style="color: #F8CF6A"></span>
+    </a>
+  </div>
+
+  <div id="navMenu" class="navbar-menu">
+    <div class="navbar-start">
+      <!-- Always visible -->
+      <a class="navbar-item" href="/">Our Pack</a>
+      <a class="navbar-item" href="/contact/">Join our Pack</a>
+      <a class="navbar-item" href="/leadership/">Leadership</a>
+      <a class="navbar-item" href="/calendar/">Calendar</a>
+      <a class="navbar-item" href="/adventures/">Adventures</a>
+
+      <!-- Parent + Admin only -->
+      <a class="navbar-item nav-members" href="/members/" style="display:none;">Members Area</a>
+      <a class="navbar-item nav-members" href="/members/events/" style="display:none;">Events</a>
+      <a class="navbar-item nav-members" href="/members/forms/" style="display:none;">Forms</a>
+
+      <!-- Admin only -->
+      <a class="navbar-item nav-admin" href="/admin/upload/" style="display:none;">📸 Upload Photos</a>
+      <a class="navbar-item nav-admin" href="/admin/" style="display:none;">⚙️ CMS</a>
     </div>
 
-    <div id="navMenu" class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item" href="/">Our Pack</a>
-        <a class="navbar-item" href="/contact/">Join our Pack</a>
-        <a class="navbar-item" href="/leadership/">Leadership</a>
-        <a class="navbar-item" href="/calendar/">Calendar</a>
-        <a class="navbar-item" href="/adventures/">Adventures</a>
+    <div class="navbar-end">
+      <!-- Logged out -->
+      <div class="navbar-item nav-loggedout">
+        <button class="button is-warning is-small" id="nav-login-btn" style="font-weight:bold;">
+          Member Login
+        </button>
+      </div>
+
+      <!-- Logged in -->
+      <div class="navbar-item nav-loggedin" style="display:none;">
+        <span class="is-size-7 has-text-white mr-3" id="nav-user-name"></span>
+        <button class="button is-light is-small" id="nav-logout-btn">Log Out</button>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Navbar burger
+    const burgers = document.querySelectorAll('.navbar-burger');
+    burgers.forEach(burger => {
+      burger.addEventListener('click', () => {
+        const target = document.getElementById(burger.dataset.target);
+        burger.classList.toggle('is-active');
+        target.classList.toggle('is-active');
+      });
+    });
+
+    if (!window.netlifyIdentity) return;
+
+    function getUserRole(user) {
+      return user?.app_metadata?.roles || [];
+    }
+
+    function applyNav(user) {
+      const roles = getUserRole(user);
+      const isAdmin = roles.includes('admin');
+      const isParent = roles.includes('parent');
+      const isLoggedIn = !!user;
+
+      // Toggle member links (parent + admin)
+      document.querySelectorAll('.nav-members').forEach(el => {
+        el.style.display = (isAdmin || isParent) ? '' : 'none';
+      });
+
+      // Toggle admin links
+      document.querySelectorAll('.nav-admin').forEach(el => {
+        el.style.display = isAdmin ? '' : 'none';
+      });
+
+      // Toggle login/logout
+      document.querySelectorAll('.nav-loggedout').forEach(el => {
+        el.style.display = isLoggedIn ? 'none' : '';
+      });
+      document.querySelectorAll('.nav-loggedin').forEach(el => {
+        el.style.display = isLoggedIn ? '' : 'none';
+      });
+
+      // Show name
+      if (user) {
+        const name = user.user_metadata?.full_name || user.email;
+        document.getElementById('nav-user-name').textContent = `Hi, ${name.split(' ')[0]}!`;
+      }
+    }
+
+    netlifyIdentity.on('init', user => applyNav(user));
+    netlifyIdentity.on('login', user => {
+      applyNav(user);
+      netlifyIdentity.close();
+    });
+    netlifyIdentity.on('logout', () => applyNav(null));
+
+    document.getElementById('nav-login-btn')?.addEventListener('click', () => {
+      netlifyIdentity.open('login');
+    });
+    document.getElementById('nav-logout-btn')?.addEventListener('click', () => {
+      netlifyIdentity.logout();
+    });
+  });
+</script>
 
   </header>
   <main class="flex-main">
